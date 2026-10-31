@@ -26,7 +26,7 @@ DECOY PASSWORDS (DO NOT PRESENT AS REAL):
 <meta charset="utf-8"/>
 <meta name="robots" content="noindex, nofollow">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>第6回 確認クイズ — たまに試す店長｜経済プログラミング特論II</title>
+<title>第6回 確認クイズ — ルールを変えると、協力は変わるか｜経済プログラミング特論II</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&amp;family=Noto+Sans+JP:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;600&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <!-- KaTeX: 問題文・選択肢内の $...$ / $$...$$ を数式表示に変換（MATH リポより移植・v3 で導入）
      注意: 通貨表記は \$100 のようにエスケープする。$ 単独は数式扱いになる。
@@ -1406,12 +1406,12 @@ body {
 <!-- ══ HERO ══ -->
 <div class="hero">
 <div class="hero-inner">
-<div class="hero-tag">LECTURE 06 — たまに試す店長</div>
-<h1>たまに試すと、出だしの不運が直る。試すたびに少し損をする<br/><span>経済プログラミング特論II</span></h1>
+<div class="hero-tag">LECTURE 06 — ルールを変えると、協力は変わるか</div>
+<h1>協力の数と皆の受け取り、効き目の出どころ<br/><span>経済プログラミング特論II</span></h1>
 <p class="hero-sub">4 つのトピックの動画を見て、各トピックの確認クイズに答えましょう。全問正解すると次のトピックが開き、最後までクリアするとレスポン番号が表示されます。</p>
 <div class="hero-meta">
-<div class="hero-badge"><span class="hero-badge-dot"></span>第06回 / 経済学部対象</div>
-<div class="hero-badge"><span class="hero-badge-dot" style="background:var(--accent3)"></span>ネットショップの店長の帳簿</div>
+<div class="hero-badge"><span class="hero-badge-dot"></span>第6回 / 経済学部対象</div>
+<div class="hero-badge"><span class="hero-badge-dot" style="background:var(--accent3)"></span>人の代わりにルールを書いた 100 人の社会</div>
 </div>
 <!-- 教員用の入口は URL クエリ ?teacher=1 に置く（?practice=1 と同じ型）。
      配布ファイルは常に学生向けで、教員モード・全解放のボタンは URL を付けたときだけ現れる。 -->
@@ -1427,43 +1427,44 @@ body {
 <!-- SIDEBAR -->
 <nav class="sidebar">
 <div class="sb-section">トピック</div>
-<button class="unit-btn active" data-num="1" id="btn-s1" onclick="showStep('s1')"><span class="u-num">1</span><span class="u-name">行動価値の更新</span></button>
-<button class="unit-btn locked" data-num="2" id="btn-s2" onclick="showStep('s2')"><span class="u-num">2</span><span class="u-name">ε-greedy 法</span><span class="lock-icon-sb">🔒</span></button>
-<button class="unit-btn locked" data-num="3" id="btn-s3" onclick="showStep('s3')"><span class="u-num">3</span><span class="u-name">学習の評価</span><span class="lock-icon-sb">🔒</span></button>
-<button class="unit-btn locked" data-num="4" id="btn-s4" onclick="showStep('s4')"><span class="u-num">4</span><span class="u-name">状態</span><span class="lock-icon-sb">🔒</span></button>
+<button class="unit-btn active" data-num="1" id="btn-s1" onclick="showStep('s1')"><span class="u-num">1</span><span class="u-name">行動仮定と条件付き協力</span></button>
+<button class="unit-btn locked" data-num="2" id="btn-s2" onclick="showStep('s2')"><span class="u-num">2</span><span class="u-name">制度費用と純利得</span><span class="lock-icon-sb">🔒</span></button>
+<button class="unit-btn locked" data-num="3" id="btn-s3" onclick="showStep('s3')"><span class="u-num">3</span><span class="u-name">対照条件と行動反応</span><span class="lock-icon-sb">🔒</span></button>
+<button class="unit-btn locked" data-num="4" id="btn-s4" onclick="showStep('s4')"><span class="u-num">4</span><span class="u-name">感度分析と外的妥当性</span><span class="lock-icon-sb">🔒</span></button>
 </nav>
 <!-- MAIN -->
 <main class="main">
 <!-- 保存できないブラウザ（プライベートウィンドウ・サイトデータ拒否）への案内。既定は非表示 -->
 <div class="storage-warn" id="storage-warn" style="display:none;">⚠ このブラウザでは進捗が保存できません。<strong>再読込すると最初からになります</strong>（このページを開いたままなら最後まで進められます）。</div>
 
-<!-- ═══ トピック 1: 行動価値の更新 ═══ -->
+<!-- ═══ トピック 1: 行動仮定と条件付き協力 ═══ -->
 <div class="unit-panel active" id="panel-s1">
 <div class="unit-header">
-<div class="uh-kicker">トピック1 — 行動価値の更新</div>
-<h2>1 件の売上は、ずれの n 分の 1 だけ平均を動かす</h2>
-<p class="uh-desc">前の回の店長は、記録を全部並べて合計 ÷ 回数で平均を出しました。今回は、客が 1 人来るたびに、今の平均と今回の 1 件だけで、その値段の平均を直す式を見ます。</p>
-<div class="uh-tags"><span class="tag tag-stat">行動価値の更新</span><span class="tag tag-stat">試した回数</span></div>
+<div class="uh-kicker">トピック1 — 行動仮定と条件付き協力</div>
+<h2>人の代わりに書いたルールが、社会の動きを決める</h2>
+<p class="uh-desc">教室では、ルールだけ変えて何度もやり直すことはできません。そこで人の代わりにルールを書き、罰のない社会を 4 人の班と 100 人で回して、協力が下がり続けるのか、どこかで止まるのかを確かめます。</p>
+<div class="uh-tags"><span class="tag tag-stat">行動仮定</span><span class="tag tag-stat">条件付き協力</span></div>
 </div>
 <div class="obj-box">
 <div class="obj-title">// このトピックのゴール</div>
-<ul><li>新しい平均 ＝ 古い平均 ＋（今回の売上 − 古い平均）÷ 試した回数 で、1 件ずつ平均を直せる</li><li>1 件ずつ直した平均は、合計 ÷ 回数と同じ所に着くことを確かめられる</li><li>試した回数（その値段を出した回数）が少ない値段ほど、1 件で平均が大きく動くことを説明できる</li></ul>
+<ul><li>行動仮定（モデルの人は、作る人が書いたとおりに動く）を、自分の言葉で説明できる</li><li>4 人の班で、他の 3 人の平均 × 合わせる割合 0.8 から次のラウンドの拠出を出せる</li><li>罰のない社会が下がって止まること、その 2 つの数（拠出 4.89・受け取り 22.94）が比べる相手になることを説明できる</li></ul>
 </div>
 <div class="section">
 <div class="sec-label"><span class="s-num">🎬</span>解説動画</div>
-<a class="colab-card" data-topic="s1" href="https://youtu.be/rCqODqfbOJM" target="_blank">
+<a class="colab-card" data-topic="s1" href="https://youtu.be/SHTss5Z9cIM" target="_blank">
 <span class="colab-icon">▶️</span>
-<div><div class="colab-title">トピック1 行動価値の更新</div>
-<div class="colab-desc">1 回売れなかった 400 円が、2 回目に売れたら平均はいくつか</div></div>
+<div><div class="colab-title">トピック1 行動仮定と条件付き協力</div>
+<div class="colab-desc">罰なしに 10 ラウンド続けると、平均拠出はどうなるか</div></div>
 <span class="colab-arrow">→ 視聴</span>
 </a>
 </div>
 <div class="todo-box" id="todo-s1">
-<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_learn.ipynb）</div>
+<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_public.ipynb）</div>
 <ul>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-1"><span class="todo-tag">写経</span><span class="todo-text">更新の関数の写経（8 行・スライド p.13。実行の手順は p.14）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-2"><span class="todo-tag">演習 1</span><span class="todo-text">足したセルに同じ 8 行を写し、4 行目の売上の並びを 800 円の 10 件に書き換えて実行して、答え欄に書く（スライド p.15）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-3"><span class="todo-tag">そのまま実行</span><span class="todo-text">段1 の図のセル（スライド p.11 の図と同じ形になるか見る）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-1"><span class="todo-tag">そのまま実行</span><span class="todo-text">ノートのいちばん上の記録のセルと、段 1 の準備のセル（society を作る・書き換えずに実行するだけ）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-2"><span class="todo-tag">写経</span><span class="todo-text">4 人の班のループの写経（5 行・スライド p.14。実行の手順は p.15）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-3"><span class="todo-tag">そのまま実行</span><span class="todo-text">100 人の社会のセル（写さずに選んで ▶・スライド p.16）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s1-4"><span class="todo-tag">演習 1</span><span class="todo-text">足したセルに演習の枠の 3 行を写し、1 行目を rec = society(beta=1.0) に書き換えて実行して、答え欄に 2 つの数を書く（スライド p.17）</span></label></li>
 </ul>
 <div class="todo-note">チェックはこのブラウザにだけ残ります（提出はノートブックで）。</div>
 </div>
@@ -1471,82 +1472,80 @@ body {
 <div class="sec-label"><span class="s-num">①</span>確認クイズ（全4問正解で トピック2 解放）</div>
 
 <div class="quiz-card" id="qc-s1-1">
-<div class="quiz-q"><span class="quiz-qnum">Q1</span>動画で「行動価値」と呼んだのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q1</span>動画で「行動仮定」と呼んだのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="売れた回数ではありません。行動価値は、その値段を出したときに、1 回あたり平均いくら入るかで、売れなかった回の 0 円も数えます。" onclick="checkQuiz(this,false,'exp-s1-1','s1')"><span class="opt-badge">A</span>その値段で売れた回数</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-1','s1')"><span class="opt-badge">B</span>その値段を出したときの、1 回あたりの平均（帳簿に書く数）</div>
-<div class="quiz-opt" data-wrong="合計は、試した回数が多い値段ほど大きくなります。行動価値は、合計を試した回数で割った、1 回あたりの平均です。" onclick="checkQuiz(this,false,'exp-s1-1','s1')"><span class="opt-badge">C</span>その値段を出したときの、売上の合計</div>
-<div class="quiz-opt" data-wrong="売れた回だけで割ると、平均は値段の額そのもの（400 円や 800 円）になります。行動価値は、売れなかった回も 1 回と数えた、1 回あたりの平均です。" onclick="checkQuiz(this,false,'exp-s1-1','s1')"><span class="opt-badge">D</span>その値段で売れた回だけの平均（値段の額そのもの）</div>
+<div class="quiz-opt" data-wrong="観測した記録ではありません。モデルの人は、作る人が書いたとおりに動きます。モデルのただ乗り型 30% も、作る人が置いた割合で、教室の 1 ラウンド目の 0 点（16%）とは別の数です。" onclick="checkQuiz(this,false,'exp-s1-1','s1')"><span class="opt-badge">A</span>教室の実験で観測した、一人ひとりの選び方の記録</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-1','s1')"><span class="opt-badge">B</span>モデルの中の人がどう選ぶかを、作る人が決めて書いたルール</div>
+<div class="quiz-opt" data-wrong="このモデルの人は、損得を計算して選んでいません。いつも 0・他の 3 人の平均 × 0.8・いつも 20、と作る人が書いたとおりに出すだけです。" onclick="checkQuiz(this,false,'exp-s1-1','s1')"><span class="opt-badge">C</span>人が損得を計算したときに、必ず選ぶことになる答え</div>
+<div class="quiz-opt" data-wrong="誰にも尋ねていません。型の決め方も、人数の割合（100 人なら 30・60・10 人）も、作る人が決めて書いたものです。" onclick="checkQuiz(this,false,'exp-s1-1','s1')"><span class="opt-badge">D</span>100 人にアンケートで尋ねて集めた、それぞれの好み</div>
 </div>
-<div class="quiz-exp" id="exp-s1-1"><strong>正解: B</strong><br/>行動価値は、その値段（行動）を出したときの 1 回あたりの平均で、前の回の帳簿に書いた平均と同じものです。今回は、この平均を客が 1 人来るたびに 1 件ずつ直します。</div>
+<div class="quiz-exp" id="exp-s1-1"><strong>正解: B</strong><br/>行動仮定は、モデルの中の人がどう選ぶかを、作る人が決めて書いたルールで、人数の割合も含みます。下がって止まる動きは、書いたルールと人数の割合から出てきます。だから、モデルの結果は、書いたルールと一緒に読みます。</div>
 </div>
 
 <div class="quiz-card" id="qc-s1-2">
-<div class="quiz-q"><span class="quiz-qnum">Q2</span>400 円の 4 件目までの平均は 300 円でした。5 件目に 400 円で売れたとき、更新の式「新しい平均 ＝ 古い平均 ＋（今回の売上 − 古い平均）÷ 試した回数」で出る新しい平均は、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q2</span>4 人の班（A はいつも 0・B と C は他の 3 人の平均 × 合わせる割合 0.8・D はいつも 20）の 1 ラウンド目は 0・12・12・20 でした。B の 2 ラウンド目の拠出は、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="平均が変わらないのは、今回の売上と古い平均が同じ（ずれが 0）ときです。ここでは 400 − 300 ＝ 100 円のずれがあります。" onclick="checkQuiz(this,false,'exp-s1-2','s1')"><span class="opt-badge">A</span>300 円（売れた件なので、平均は変わらない）</div>
-<div class="quiz-opt" data-wrong="古い平均と今回の売上を半々にすると、今回の 1 件を重く数えすぎます。ずれ 100 円を、試した回数 5 で割った 20 円だけ足します。" onclick="checkQuiz(this,false,'exp-s1-2','s1')"><span class="opt-badge">B</span>（300 ＋ 400）÷ 2 ＝ 350 円</div>
-<div class="quiz-opt" data-wrong="今回の売上そのものになるのは、試した回数が 1 のとき（÷1）だけです。5 件目なので、ずれの 5 分の 1 だけ動きます。" onclick="checkQuiz(this,false,'exp-s1-2','s1')"><span class="opt-badge">C</span>400 円（今回の売上に置き換える）</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-2','s1')"><span class="opt-badge">D</span>300 ＋（400 − 300）÷ 5 ＝ 320 円</div>
+<div class="quiz-opt" data-wrong="9.27 は 2 ラウンド目の班平均（0・8.53・8.53・20 の平均）です。B 自身の拠出は 8.53 です。" onclick="checkQuiz(this,false,'exp-s1-2','s1')"><span class="opt-badge">A</span>9.27</div>
+<div class="quiz-opt" data-wrong="10.67 は B の予想（他の 3 人 0・12・20 の平均）です。拠出は、予想に合わせる割合 0.8 を掛けた 8.53 です。" onclick="checkQuiz(this,false,'exp-s1-2','s1')"><span class="opt-badge">B</span>10.67</div>
+<div class="quiz-opt" data-wrong="12 は 1 ラウンド目の拠出（0.8 × 最初の予想 15）です。2 ラウンド目は、1 ラウンド目の他の 3 人の平均から予想を作り直します。" onclick="checkQuiz(this,false,'exp-s1-2','s1')"><span class="opt-badge">C</span>12</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-2','s1')"><span class="opt-badge">D</span>8.53</div>
 </div>
-<div class="quiz-exp" id="exp-s1-2"><strong>正解: D</strong><br/>ずれは 400 − 300 ＝ 100 円、その 5 分の 1 は 20 円なので、300 ＋ 20 ＝ 320 円です。合計 ÷ 回数で出しても 1600 ÷ 5 ＝ 320 円で、同じ所に着きます。</div>
+<div class="quiz-exp" id="exp-s1-2"><strong>正解: D</strong><br/>予想は、前のラウンドの、他の 3 人の平均です。B から見た他の 3 人は 0・12・20 なので (0 ＋ 12 ＋ 20) ÷ 3 ＝ 10.67。拠出は、予想 × 0.8 で 8.53（C も同じ）。班平均は 11.00 → 9.27 → 8.80 と下がり、D のいつも 20 が床になって、B と C は 7.27 より下がりません。</div>
 </div>
 
 <div class="quiz-card" id="qc-s1-3">
-<div class="quiz-q"><span class="quiz-qnum">Q3</span>古い平均が 200 円の値段に、今回 400 円の売上が 1 件入りました。試した回数（今回を含む）が 2・5・20 のとき、平均が動く幅の組として正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q3</span>他の人の平均に合わせて出す人が 6 割の 100 人の社会で、罰なしに 10 ラウンド続けると、平均拠出はどうなりましたか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="向きが逆です。試した回数で割るので、回数が多い値段ほど、1 件では少ししか動きません。" onclick="checkQuiz(this,false,'exp-s1-3','s1')"><span class="opt-badge">A</span>＋10 円・＋40 円・＋100 円（試した回数が多いほど大きく動く）</div>
-<div class="quiz-opt" data-wrong="ずれ 200 円を、そのまま足すのではありません。試した回数で割るので、2 なら 100 円、5 なら 40 円、20 なら 10 円です。" onclick="checkQuiz(this,false,'exp-s1-3','s1')"><span class="opt-badge">B</span>＋200 円・＋200 円・＋200 円（いつもずれの全部だけ動く）</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-3','s1')"><span class="opt-badge">C</span>＋100 円・＋40 円・＋10 円</div>
-<div class="quiz-opt" data-wrong="半分になるのは、試した回数が 2 のときだけです。5 なら 5 分の 1 の 40 円、20 なら 20 分の 1 の 10 円です。" onclick="checkQuiz(this,false,'exp-s1-3','s1')"><span class="opt-badge">D</span>＋100 円・＋100 円・＋100 円（いつもずれの半分だけ動く）</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-3','s1')"><span class="opt-badge">A</span>9.2 から下がって止まり、10 ラウンド目は 3.62</div>
+<div class="quiz-opt" data-wrong="14.77 は、罰のルールを足した社会の 10 ラウンド目です。罰のない社会では、ただ乗り型の 0 が他の 3 人の平均を下げ、× 0.8 でさらに控えめになるので下がります。" onclick="checkQuiz(this,false,'exp-s1-3','s1')"><span class="opt-badge">B</span>9.2 から上がっていき、10 ラウンド目は 14.77</div>
+<div class="quiz-opt" data-wrong="9.2 は 1 ラウンド目だけです。合わせる人は、前のラウンドの他の 3 人の平均 × 0.8 を出すので、ラウンドごとに下がっていきます。" onclick="checkQuiz(this,false,'exp-s1-3','s1')"><span class="opt-badge">C</span>9.2 からほとんど動かず、10 ラウンドとも 9.2 前後</div>
+<div class="quiz-opt" data-wrong="0 までは落ちません。いつも 20 を出す無条件協力型が平均を支えるので、下がって止まります。" onclick="checkQuiz(this,false,'exp-s1-3','s1')"><span class="opt-badge">D</span>9.2 から下がり続け、10 ラウンド目には 0 になる</div>
 </div>
-<div class="quiz-exp" id="exp-s1-3"><strong>正解: C</strong><br/>ずれ 200 円の 2 分の 1・5 分の 1・20 分の 1 で、＋100・＋40・＋10 円です。試した回数が少ない値段ほど、1 件で大きく動きます。レビューの星で、件数の少ない店ほど 1 件で大きく動くのと同じ形です。</div>
+<div class="quiz-exp" id="exp-s1-3"><strong>正解: A</strong><br/>平均拠出は 9.2 から下がって、10 ラウンド目は 3.62（動画の入口の三択では ③ 下がる）。4 人の班の床 7.27 より低いのは、毎ラウンド組み直すので、25 組のうち 15〜19 組にいつも 20 の人がいないからです。10 ラウンドの平均（拠出 4.89・受け取り 22.94）が、この回でずっと比べる相手になります。</div>
 </div>
 
 <div class="quiz-card" id="qc-s1-4">
-<div class="quiz-q"><span class="quiz-qnum">Q4</span>400 円と 800 円を客ごとに交互に出した記録で、400 円の平均を 1 件ずつ直します。式の「試した回数」に入れる数として正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q4</span>「本物の人で実験したほうが、確かでは？」という問いに、動画はモデルの良さを 2 つ挙げました。正しいのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-4','s1')"><span class="opt-badge">A</span>その値段を出した回数（400 円の 1・2・3 … 件目）</div>
-<div class="quiz-opt" data-wrong="客の番号で割ると、400 円の 4 件目は 7 人目なので ÷7 になり、売れなくても少ししか下がりません。10 件で 343 円になり、合計 ÷ 回数の 320 円に着きません。" onclick="checkQuiz(this,false,'exp-s1-4','s1')"><span class="opt-badge">B</span>店に来た客の番号（400 円なら 1・3・5 … 人目）</div>
-<div class="quiz-opt" data-wrong="売れた回数で割ると、売れなかった回の 0 円が分母から抜けます。試した回数は、売れても売れなくても、その値段を出したら 1 回と数えます。" onclick="checkQuiz(this,false,'exp-s1-4','s1')"><span class="opt-badge">C</span>その値段で売れた回数</div>
-<div class="quiz-opt" data-wrong="800 円を出した客まで数えると、400 円の 1 回あたりの平均になりません。数えるのは、400 円を出した回数だけです。" onclick="checkQuiz(this,false,'exp-s1-4','s1')"><span class="opt-badge">D</span>その日に来た客全員の人数</div>
+<div class="quiz-opt" data-wrong="モデルの人は、作る人が書いたとおりに動きます。人の反応を見つけてくれるのではなく、書いた反応の結果を計算するだけです。" onclick="checkQuiz(this,false,'exp-s1-4','s1')"><span class="opt-badge">A</span>人が罰にどう反応するかを、計算で見つけ出してくれる</div>
+<div class="quiz-opt" data-wrong="動画は逆を言いました。1 回ごとの確かさは、本物の人のほうが上です。モデルの良さは、同じ条件のまま、ルールだけ変えて何度でも比べられることです。" onclick="checkQuiz(this,false,'exp-s1-4','s1')"><span class="opt-badge">B</span>1 回ごとの確かさが、本物の人で実験するより高くなる</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s1-4','s1')"><span class="opt-badge">C</span>集める手間も費用も要らず、何度でも条件を変えて試せる</div>
+<div class="quiz-opt" data-wrong="同じ答えが出るとは限りません。モデルのただ乗り型は 30% で、教室の 1 ラウンド目の 0 点（16%）とは違います。割合を書き換えると、別の社会になります。" onclick="checkQuiz(this,false,'exp-s1-4','s1')"><span class="opt-badge">D</span>教室の実験の数と、いつも同じ答えが出るので安心できる</div>
 </div>
-<div class="quiz-exp" id="exp-s1-4"><strong>正解: A</strong><br/>試した回数は、店に来た人数ではなく、その値段を出した回数（今回を含む）です。客の番号で割る取り違えをすると、400 円の 10 件で 343 円になり、正しい 320 円に着きません。</div>
+<div class="quiz-exp" id="exp-s1-4"><strong>正解: C</strong><br/>実験の日は 1 日だけで、公共財ゲームは 2 ラウンドだけでした。人を集め、長く付き合ってもらうからです。モデルなら ① 人を集める手間も費用も要らず、② 人の組み合わせや条件を変えて、何度でも試せます。たとえば同じ 100 人・同じ組み方のまま、罰だけ足せます。ただし、モデルの結果は、書いたルールと一緒に読みます。</div>
 </div>
 
 <div class="step-locked-gate" id="gate-s1">🔒 4問すべて正解すると トピック2 が解放されます。</div>
 </div>
 </div>
 
-<!-- ═══ トピック 2: ε-greedy 法 ═══ -->
+<!-- ═══ トピック 2: 制度費用と純利得 ═══ -->
 <div class="unit-panel" id="panel-s2">
 <div class="unit-header">
-<div class="uh-kicker">トピック2 — ε-greedy 法</div>
-<h2>たまに、わざと別の値段を試す</h2>
-<p class="uh-desc">平均の高いほうだけを出すと、出だしで不運だった値段を確かめ直せません。ふだんは平均が高いほうを出し、たまに、わざと別の値段も試す店長を、前の回と同じ seed 15 の客で動かします。</p>
-<div class="uh-tags"><span class="tag tag-stat">推定と方策</span><span class="tag tag-stat">ε-greedy 法</span></div>
+<div class="uh-kicker">トピック2 — 制度費用と純利得</div>
+<h2>協力が増えても、皆が得をしたとは限らない</h2>
+<p class="uh-desc">出さない人が損をする罰のルールを足します。でも罰には、注意する手間も、注意された人の損もあります。罰で消えた点も帳簿につけて、協力が増えたときに皆が得をしたかを確かめます。</p>
+<div class="uh-tags"><span class="tag tag-stat">制裁（罰）</span><span class="tag tag-stat">純利得</span></div>
 </div>
 <div class="obj-box">
 <div class="obj-title">// このトピックのゴール</div>
-<ul><li>平均を直す「推定」と、どの値段を出すかを決める「方策」を区別できる</li><li>ε-greedy 法の 1 人の客の手順（さいころを振る → 試すか → 平均が高いほう → 出した値段の平均だけ直す）を書ける</li><li>seed 15 の店で、たまに試すと 1 回の 0 円で捨てた 400 円を拾い直せることを説明できる</li></ul>
+<ul><li>罰のルールのねらい（出さない人が損をするようにして、ただ乗りを得にしない）を説明できる</li><li>純利得 ＝ 費用前利得 − 制度費用 で、罰で消えた点を引いた皆の受け取りを出せる</li><li>協力の数（拠出）と皆の受け取りの数（純利得）を、別々に数えて報告できる</li></ul>
 </div>
 <div class="section">
 <div class="sec-label"><span class="s-num">🎬</span>解説動画</div>
-<a class="colab-card" data-topic="s2" href="https://youtu.be/CMRs2Zflt7U" target="_blank">
+<a class="colab-card" data-topic="s2" href="https://youtu.be/11Y5448hd3c" target="_blank">
 <span class="colab-icon">▶️</span>
-<div><div class="colab-title">トピック2 ε-greedy 法</div>
-<div class="colab-desc">たまに試す店長なら、seed 15 の店で 400 円に戻るか</div></div>
+<div><div class="colab-title">トピック2 制度費用と純利得</div>
+<div class="colab-desc">罰を足した 1 ラウンド目、一人あたりの受け取りは罰なしより上か下か</div></div>
 <span class="colab-arrow">→ 視聴</span>
 </a>
 </div>
 <div class="todo-box" id="todo-s2">
-<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_learn.ipynb）</div>
+<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_public.ipynb）</div>
 <ul>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-1"><span class="todo-tag">そのまま実行</span><span class="todo-text">準備のセル（客が 1 人来る道具・写さず Shift + Enter で実行するだけ）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-2"><span class="todo-tag">写経 1</span><span class="todo-text">たまに試す店長の関数の写経（19 行・実行しても何も出ない・スライド p.29）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-3"><span class="todo-tag">写経 2</span><span class="todo-text">seed 15 で動かす写経（4 行・スライド p.30。実行の手順は p.31）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-4"><span class="todo-tag">演習 2</span><span class="todo-text">足したセルに同じ 4 行を写し、1 行目の 0.2 を 0 に書き換えて実行して、答え欄に書く（スライド p.32）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-5"><span class="todo-tag">そのまま実行</span><span class="todo-text">段2 の図のセル（スライド p.25・p.26 の図と同じ形になるか見る）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-1"><span class="todo-tag">写経</span><span class="todo-text">班の帳簿の写経（7 行・スライド p.35。実行の手順は p.36）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-2"><span class="todo-tag">そのまま実行</span><span class="todo-text">罰ありの帳簿のセル（写さずに選んで ▶・スライド p.37）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s2-3"><span class="todo-tag">演習 2</span><span class="todo-text">足したセルに写経の 7 行を写し、1 行目を c = [0, 4, 12, 20] に書き換えて実行して、答え欄に 3 つの数を書く（スライド p.38）</span></label></li>
 </ul>
 <div class="todo-note">チェックはこのブラウザにだけ残ります（提出はノートブックで）。</div>
 </div>
@@ -1554,80 +1553,80 @@ body {
 <div class="sec-label"><span class="s-num">①</span>確認クイズ（全4問正解で トピック3 解放）</div>
 
 <div class="quiz-card" id="qc-s2-1">
-<div class="quiz-q"><span class="quiz-qnum">Q1</span>動画では、店長の仕事を「推定」と「方策」の 2 つに分けました。「方策」にあたるのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q1</span>動画で、罰のルールを加えるねらいとして言ったのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-1','s2')"><span class="opt-badge">A</span>平均を見て、次の客にどの値段を出すかを決める決まり</div>
-<div class="quiz-opt" data-wrong="それは推定です。前のトピックの更新の式で平均を直すのが推定、その平均を見てどの値段を出すかを決めるのが方策です。" onclick="checkQuiz(this,false,'exp-s2-1','s2')"><span class="opt-badge">B</span>記録から、値段ごとの平均を直すこと</div>
-<div class="quiz-opt" data-wrong="買うかどうかを決めるのは客で、店長の仕事ではありません。店長の方策は、どの値段を出すかの決まりです。" onclick="checkQuiz(this,false,'exp-s2-1','s2')"><span class="opt-badge">C</span>客が、出された値段で買うかどうかを決めること</div>
-<div class="quiz-opt" data-wrong="売上を数えるのは、店長の良し悪しを測るときの話です。方策は、平均を見て次の客に出す値段を決める決まりです。" onclick="checkQuiz(this,false,'exp-s2-1','s2')"><span class="opt-badge">D</span>100 人ぶんの売上の合計を数えること</div>
+<div class="quiz-opt" data-wrong="手間は消える点なので、受け取りは減ります。拠出が同じ 1 ラウンド目の班では、一人あたり 26.6 → 23.6 と下がりました。" onclick="checkQuiz(this,false,'exp-s2-1','s2')"><span class="opt-badge">A</span>注意する手間を払って、皆の受け取りをすぐに増やす</div>
+<div class="quiz-opt" data-wrong="この罰の点は、誰の手にも渡らず消えます。集めて配らないので、「罰金」ではなく「罰」と呼びました。" onclick="checkQuiz(this,false,'exp-s2-1','s2')"><span class="opt-badge">B</span>出さない人から集めた点を、出した人に配って報いる</div>
+<div class="quiz-opt" data-wrong="このモデルでは誰も班の外へ出しません。罰は、受けた人の受け取りを 1 件ごとに 3 減らすだけです。" onclick="checkQuiz(this,false,'exp-s2-1','s2')"><span class="opt-badge">C</span>出さない人を、次のラウンドから班の外へ出してしまう</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-1','s2')"><span class="opt-badge">D</span>出さない人が損をするようにして、ただ乗りを得にしない</div>
 </div>
-<div class="quiz-exp" id="exp-s2-1"><strong>正解: A</strong><br/>推定は記録から値段ごとの平均を直すこと、方策は平均を見てどの値段を出すかを決める決まりです。平均だけで選ぶ店長も推定は正しいのに、方策が 400 円を選ばないので、1 回の 0 円が直りませんでした。直すのは方策のほうです。</div>
+<div class="quiz-exp" id="exp-s2-1"><strong>正解: D</strong><br/>罰がないと、点を出さない人がいちばん得をし、合わせる人も下げていくので、皆が出さなくなっていきます。罰のルールは制度の設計の話で、出さない人が損をするルールを加えて、ただ乗りが得にならないようにします。ただし罰には、注意する手間も、注意された人の損もあります。</div>
 </div>
 
 <div class="quiz-card" id="qc-s2-2">
-<div class="quiz-q"><span class="quiz-qnum">Q2</span>ε ＝ 0.2 の ε-greedy 法の店長は、1 人の客にどの値段を出すかを、どう決めましたか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q2</span>拠出が 0・12・12・20 の 4 人の班に、罰のルールを足した 1 ラウンド目。一人あたりの受け取りは、どうなりましたか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="決まった順番ではなく、客ごとにさいころ e を振って、0.2 未満なら試します。5 人に 1 人くらいは、ならした割合です。" onclick="checkQuiz(this,false,'exp-s2-2','s2')"><span class="opt-badge">A</span>5 人ごとに 1 人、決まった順番で 800 円を出し、それ以外は 400 円を出す</div>
-<div class="quiz-opt" data-wrong="試すときは平均を見ずに、さいころ d で半々に選びます。試すときに出す値段も平均で決めると、試しの意味が変わってしまいます。" onclick="checkQuiz(this,false,'exp-s2-2','s2')"><span class="opt-badge">B</span>さいころ e が 0.2 未満なら、平均が低いほうの値段を出し、そうでなければ平均が高いほうを出す</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-2','s2')"><span class="opt-badge">C</span>さいころ e が 0.2 未満なら、さいころ d で 2 つの値段のどちらかを半々で試し、そうでなければ平均が高いほう（同じなら 400 円）を出す</div>
-<div class="quiz-opt" data-wrong="向きが逆です。e が 0.2 未満（5 人に 1 人くらい）のときに試し、残りの客では平均が高いほうを出します。" onclick="checkQuiz(this,false,'exp-s2-2','s2')"><span class="opt-badge">D</span>さいころ e が 0.2 未満なら平均が高いほうを出し、そうでなければ試す</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-2','s2')"><span class="opt-badge">A</span>26.6 → 23.6 に下がる（罰 3 件で 12 点が消える）</div>
+<div class="quiz-opt" data-wrong="罰の点は誰にも移らず消えます。1 件で、与えた人の手間 1 と、受けた人の損 3 が消えます。" onclick="checkQuiz(this,false,'exp-s2-2','s2')"><span class="opt-badge">B</span>26.6 のまま（罰の点は A から B・C・D へ移る）</div>
+<div class="quiz-opt" data-wrong="手間 3 点だけを引くと 25.85 ですが、受けた人の損 9 点を数えていません。手間 3 ＋ 損 9 ＝ 12 点を両方引いて 23.6 です。" onclick="checkQuiz(this,false,'exp-s2-2','s2')"><span class="opt-badge">C</span>26.6 → 25.85 に下がる（与えた人の手間だけ消える）</div>
+<div class="quiz-opt" data-wrong="罰は出した後に来るので、1 ラウンド目の拠出は罰なしと同じ 0・12・12・20 です。拠出が同じで点だけ消えるので、受け取りは下がります。" onclick="checkQuiz(this,false,'exp-s2-2','s2')"><span class="opt-badge">D</span>26.6 より上がる（罰を見て、皆がすぐ多く出す）</div>
 </div>
-<div class="quiz-exp" id="exp-s2-2"><strong>正解: C</strong><br/>手順は 4 つです。① さいころ e を振る ② e が 0.2 未満なら試す（さいころ d が 0.5 以上なら 800 円、未満なら 400 円）③ そうでなければ平均が高いほう（同じなら 400 円）④ 出した値段の平均だけを直す。</div>
+<div class="quiz-exp" id="exp-s2-2"><strong>正解: A</strong><br/>班平均は 11。11 以上の B・C・D が罰を与える人で、11 − 4 ＝ 7 より下の A が受ける人なので、罰は 3 人 × 1 人 ＝ 3 件。1 件で 1 ＋ 3 ＝ 4 点が消え、合わせて 12 点。一人あたりの受け取りは 26.6 → 23.6 です（動画の入口の三択では ③）。拠出が同じでも、皆の受け取りは下がります。</div>
 </div>
 
 <div class="quiz-card" id="qc-s2-3">
-<div class="quiz-q"><span class="quiz-qnum">Q3</span>seed 15 の客で、たまに試す店長の 6 人目に起きたことは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q3</span>動画で「純利得」と呼んだのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="6 人目は 400 円で売れました。これで 400 円の平均が 0 円から 200 円に直り、そのあと 400 円を確かめ直していけるようになりました。" onclick="checkQuiz(this,false,'exp-s2-3','s2')"><span class="opt-badge">A</span>試す番になって 400 円を出したが、売れず、400 円の平均は 0 円のまま</div>
-<div class="quiz-opt" data-wrong="6 人目のさいころ d は 0.41 で、0.5 未満なので 400 円を出しました。売れて、400 円の平均は 0 ＋（400 − 0）÷ 2 ＝ 200 円になりました。" onclick="checkQuiz(this,false,'exp-s2-3','s2')"><span class="opt-badge">B</span>試す番になって 800 円を出し、売れて、800 円の平均が上がった</div>
-<div class="quiz-opt" data-wrong="6 人目のさいころ e は 0.13 で、0.2 未満なので試す番でした。試しで出したのは 400 円で、売れました。" onclick="checkQuiz(this,false,'exp-s2-3','s2')"><span class="opt-badge">C</span>平均が高い 800 円を出したが、売れなかった</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-3','s2')"><span class="opt-badge">D</span>試す番になって 400 円を出し、売れて、400 円の平均が 0 円から 200 円に直った</div>
+<div class="quiz-opt" data-wrong="受けた人の損（損失）は、制度費用の一部です。純利得は、その制度費用を引いたあとの、皆の受け取りです。" onclick="checkQuiz(this,false,'exp-s2-3','s2')"><span class="opt-badge">A</span>罰を受けた人が失った点の、合計</div>
+<div class="quiz-opt" data-wrong="それは費用前利得です。純利得は、費用前利得から、罰のルールで消えた点（制度費用）を引いたものです。" onclick="checkQuiz(this,false,'exp-s2-3','s2')"><span class="opt-badge">B</span>罰の前の受け取りの、4 人の平均</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-3','s2')"><span class="opt-badge">C</span>罰で消えた点を引いた、皆の受け取り</div>
+<div class="quiz-opt" data-wrong="拠出は協力の数で、受け取りではありません。協力の数と、皆の受け取りの数は、別に数えます。" onclick="checkQuiz(this,false,'exp-s2-3','s2')"><span class="opt-badge">D</span>罰で増えた拠出の、一人あたりの量</div>
 </div>
-<div class="quiz-exp" id="exp-s2-3"><strong>正解: D</strong><br/>6 人目は e が 0.13 で試す番、d が 0.41 で 400 円を出し、売れました。400 円は 2 回目なので、0 ＋（400 − 0）÷ 2 ＝ 200 円です。トピック1 の入口の問い（0 円から 200 円）と同じ動きです。</div>
+<div class="quiz-exp" id="exp-s2-3"><strong>正解: C</strong><br/>純利得 ＝ 費用前利得 − 制度費用。費用前利得は罰の前の受け取りの平均（20 ＋ 0.6 × 班平均）、制度費用は（実施費用 1 ＋ 損失 3）× 罰の件数 ÷ 人数です。与えた人の手間も、受けた人の損も、誰かの受け取りから消えた点なので、両方を 1 回ずつ引きます。</div>
 </div>
 
 <div class="quiz-card" id="qc-s2-4">
-<div class="quiz-q"><span class="quiz-qnum">Q4</span>seed 15 の同じ客 100 人で、たまに試す店長（ε ＝ 0.2）の帳簿として正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q4</span>100 人の社会で 10 ラウンドをならすと、罰なしと、罰・反応ありの社会は、どう比べられましたか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="20 回・平均 200 円は、800 円のほうの数です。400 円は 80 回出して、平均は 315 円になりました。" onclick="checkQuiz(this,false,'exp-s2-4','s2')"><span class="opt-badge">A</span>400 円を 20 回（平均 200 円）出し、売上は 29200 円だった</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-4','s2')"><span class="opt-badge">B</span>400 円を 80 回（平均 315 円）出し、売上は 29200 円だった</div>
-<div class="quiz-opt" data-wrong="試しで 400 円を出したのは 11 回ですが、400 円の平均が 800 円より上に来てからは、貪欲に選んでも 400 円を出しました。合わせて 80 回です。" onclick="checkQuiz(this,false,'exp-s2-4','s2')"><span class="opt-badge">C</span>400 円を出したのは、試した 25 人のうちの 11 回だけだった</div>
-<div class="quiz-opt" data-wrong="6000 円は少なかった差ではなく、多かった差です。この店（seed 15）では、たまに試す店長のほうが売上が 6000 円多くなりました。" onclick="checkQuiz(this,false,'exp-s2-4','s2')"><span class="opt-badge">D</span>400 円を 80 回出したが、売上は平均だけで選ぶ店長より 6000 円少なかった</div>
+<div class="quiz-opt" data-wrong="100 人の社会では、制度費用 0.68 を引いても、純利得は 26.44 で罰なしの 22.94 より上でした。" onclick="checkQuiz(this,false,'exp-s2-4','s2')"><span class="opt-badge">A</span>拠出は 11.86 に上がったが、純利得は罰なしより下がった</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s2-4','s2')"><span class="opt-badge">B</span>拠出は 11.86 に、純利得も 26.44 に上がった</div>
+<div class="quiz-opt" data-wrong="罰・反応ありの社会では、罰を受けた人と見た人が合わせるので、拠出は 11.86 に上がりました。" onclick="checkQuiz(this,false,'exp-s2-4','s2')"><span class="opt-badge">C</span>拠出も純利得も、罰なしの 4.89・22.94 のままだった</div>
+<div class="quiz-opt" data-wrong="罰は 1 ラウンド目に 47 件あり、ラウンドを追って減りました。10 ラウンドの平均の制度費用は 0.68 です。" onclick="checkQuiz(this,false,'exp-s2-4','s2')"><span class="opt-badge">D</span>罰は 0 件のままで、制度費用も 0 のままだった</div>
 </div>
-<div class="quiz-exp" id="exp-s2-4"><strong>正解: B</strong><br/>たまに試す店長は 400 円を 80 回（平均 315 円）、800 円を 20 回（平均 200 円）出し、売上は 29200 円でした。この店では、平均だけで選ぶ店長より 6000 円多く、1 回の結果で捨てた 400 円を、試すことで拾い直せました。</div>
+<div class="quiz-exp" id="exp-s2-4"><strong>正解: B</strong><br/>罰なしは拠出 4.89・純利得 22.94、罰・反応ありは拠出 11.86・費用前利得 27.12・制度費用 0.68・純利得 26.44。協力の数と、皆の受け取りの数は別に数えます。ただし、この差を生んだのが罰のルールか反応のルールかは、この 2 つの社会を比べただけでは分かりません。</div>
 </div>
 
 <div class="step-locked-gate" id="gate-s2">🔒 4問すべて正解すると トピック3 が解放されます。</div>
 </div>
 </div>
 
-<!-- ═══ トピック 3: 学習の評価 ═══ -->
+<!-- ═══ トピック 3: 対照条件と行動反応 ═══ -->
 <div class="unit-panel" id="panel-s3">
 <div class="unit-header">
-<div class="uh-kicker">トピック3 — 学習の評価</div>
-<h2>試しは毎回少し損をして、まれな大損を防ぐ</h2>
-<p class="uh-desc">seed 15 の 1 本だけでは、どちらの店長がよいか決められません。客の並びを 200 通り用意し、同じ客・同じさいころで店長だけ替えて、営業中の売上と学習後の選択の 2 つの物差しで比べます。</p>
-<div class="uh-tags"><span class="tag tag-stat">統制した比較</span><span class="tag tag-plot">200 本の比較</span></div>
+<div class="uh-kicker">トピック3 — 対照条件と行動反応</div>
+<h2>罰の効き目は、書いた反応から来る</h2>
+<p class="uh-desc">罰を足すと、協力も皆の受け取りも上がりました。それは罰のルールのおかげか、罰への反応のおかげか。罰は残して反応だけ止めた社会を比べる相手にして、効き目の出どころを分けます。</p>
+<div class="uh-tags"><span class="tag tag-stat">対照条件</span><span class="tag tag-plot">3 つの社会</span></div>
 </div>
 <div class="obj-box">
 <div class="obj-title">// このトピックのゴール</div>
-<ul><li>同じ客・同じさいころで店長だけ替える比べ方（統制した比較）を説明できる</li><li>営業中の売上と学習後の選択を、別々の物差しとして数えられる</li><li>試しは毎回少し損をするが、出だしが悪い店で大損を防ぐことを、200 本の数で説明できる</li></ul>
+<ul><li>対照条件（調べたいもの 1 つだけを止め、ほかは全部同じにした比べる相手）を説明できる</li><li>罰なし・罰と反応あり・罰あり反応なしの 3 つの社会を、拠出と純利得で比べられる</li><li>このモデルでは、協力を増やしたのが書いた反応の仮定であることを、比べた数で説明できる</li></ul>
 </div>
 <div class="section">
 <div class="sec-label"><span class="s-num">🎬</span>解説動画</div>
-<a class="colab-card" data-topic="s3" href="https://youtu.be/3zBML8fkaxE" target="_blank">
+<a class="colab-card" data-topic="s3" href="https://youtu.be/hdiwh-HDCOg" target="_blank">
 <span class="colab-icon">▶️</span>
-<div><div class="colab-title">トピック3 学習の評価</div>
-<div class="colab-desc">たまに試す店長のほうが、いつも売上が多いか</div></div>
+<div><div class="colab-title">トピック3 対照条件と行動反応</div>
+<div class="colab-desc">罰のルールはそのまま、反応だけ止めると、拠出はどうなるか</div></div>
 <span class="colab-arrow">→ 視聴</span>
 </a>
 </div>
 <div class="todo-box" id="todo-s3">
-<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_learn.ipynb）</div>
+<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_public.ipynb）</div>
 <ul>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s3-1"><span class="todo-tag">写経</span><span class="todo-text">200 本で 2 人の店長を比べる写経（10 行・スライド p.49。実行の手順は p.50）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s3-2"><span class="todo-tag">演習 3</span><span class="todo-text">足したセルに同じ 10 行を写し、2 行目の 0.2 を 0.1 に書き換えて実行して、答え欄に書く（スライド p.51）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s3-3"><span class="todo-tag">そのまま実行</span><span class="todo-text">段3 の図のセル（スライド p.41・p.42・p.44・p.45 の図と同じ形になるか見る）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s3-1"><span class="todo-tag">写経</span><span class="todo-text">反応だけ止めるコードの写経（7 行・スライド p.55。実行の手順は p.56）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s3-2"><span class="todo-tag">そのまま実行</span><span class="todo-text">3 つの社会の図のセル（写さずに選んで ▶・スライド p.57）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s3-3"><span class="todo-tag">演習 3</span><span class="todo-text">足したセルに演習の枠の 3 行を写し、1 行目を rec = society(punishment=True, witness_rule=False) に書き換えて実行して、答え欄に 3 つの数を書く（スライド p.58）</span></label></li>
 </ul>
 <div class="todo-note">チェックはこのブラウザにだけ残ります（提出はノートブックで）。</div>
 </div>
@@ -1635,81 +1634,80 @@ body {
 <div class="sec-label"><span class="s-num">①</span>確認クイズ（全4問正解で トピック4 解放）</div>
 
 <div class="quiz-card" id="qc-s3-1">
-<div class="quiz-q"><span class="quiz-qnum">Q1</span>2 人の店長を 200 本の店で比べるとき、動画がそろえたものとして正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q1</span>動画で「対照条件」と呼んだのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="都合のよい本だけを選ぶと、比べたことになりません。200 本を全部数えます。" onclick="checkQuiz(this,false,'exp-s3-1','s3')"><span class="opt-badge">A</span>売上が多かった本だけを選んで、2 人を比べる</div>
-<div class="quiz-opt" data-wrong="平均だけで選ぶ店長も、毎回さいころを 2 回振って、使わずに捨てます。だから客とさいころの並びが 2 人で同じになります。" onclick="checkQuiz(this,false,'exp-s3-1','s3')"><span class="opt-badge">B</span>平均だけで選ぶ店長はさいころを振らないので、さいころの分だけ並びが違う</div>
-<div class="quiz-opt" data-wrong="別々の客で比べると、差が店長の違いから来たのか、客の違いから来たのか分かりません。2 人とも同じ seed 0〜199 の客で比べます。" onclick="checkQuiz(this,false,'exp-s3-1','s3')"><span class="opt-badge">C</span>店長ごとに、別々の seed の客を 200 通りずつ用意する</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-1','s3')"><span class="opt-badge">D</span>客の並び（seed）と店長のさいころを 2 人でそろえ、違うのは店長だけにする</div>
+<div class="quiz-opt" data-wrong="結果の良さで選ぶものではありません。比べる前に、何を 1 つだけ止めるかを決めて作る相手です。" onclick="checkQuiz(this,false,'exp-s3-1','s3')"><span class="opt-badge">A</span>10 ラウンドで、純利得がいちばん多くなった社会</div>
+<div class="quiz-opt" data-wrong="それは罰なしの社会です。2 つを同時に止めると、効いたのが罰のルールか反応のルールかを分けられません。" onclick="checkQuiz(this,false,'exp-s3-1','s3')"><span class="opt-badge">B</span>罰のルールも反応のルールも、両方を止めた相手</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-1','s3')"><span class="opt-badge">C</span>調べたいもの 1 つだけを止め、ほかは同じにした相手</div>
+<div class="quiz-opt" data-wrong="逆です。seed を同じにして、同じ 100 人・同じ組み方にします。違うのは、調べたいもの 1 つだけです。" onclick="checkQuiz(this,false,'exp-s3-1','s3')"><span class="opt-badge">D</span>seed を変えて、別の 100 人で回し直した相手</div>
 </div>
-<div class="quiz-exp" id="exp-s3-1"><strong>正解: D</strong><br/>比べたいもの以外を全部そろえる比べ方を、統制した比較と呼びました。客の並びと店長のさいころを 2 人でそろえるので、差が出れば、それは店長の違いから来たと言えます。</div>
+<div class="quiz-exp" id="exp-s3-1"><strong>正解: C</strong><br/>対照条件は、調べたいもの 1 つだけを止め、ほかは全部同じにした比べる相手です。ここでは、罰のルールは残して、反応のルール（① 罰を受けた人は次から合わせる ② 罰が起きた班の条件付き協力型も × 1）だけを止めました。効いたのはどれか、1 つずつ止めて確かめます。</div>
 </div>
 
 <div class="quiz-card" id="qc-s3-2">
-<div class="quiz-q"><span class="quiz-qnum">Q2</span>動画で、店長の良し悪しを測る物差しとして「学習後の選択」と呼んだのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q2</span>罰のルールはそのままで、反応のルールだけを止めた 4 人の班。2・3 ラウンド目の拠出は、どうなりましたか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-2','s3')"><span class="opt-badge">A</span>100 人の後、帳簿の平均が高いほうの値段（同じなら 400 円）</div>
-<div class="quiz-opt" data-wrong="それは、もう 1 つの物差しの営業中の売上です。学習後の選択は、100 人を終えたときに、帳簿の平均で選ぶ値段です。" onclick="checkQuiz(this,false,'exp-s3-2','s3')"><span class="opt-badge">B</span>学びながら得た、100 人ぶんの売上の合計</div>
-<div class="quiz-opt" data-wrong="多く出した値段ではなく、100 人を終えたときの帳簿の平均で、高いほう（同じなら 400 円）を選んだ値段です。" onclick="checkQuiz(this,false,'exp-s3-2','s3')"><span class="opt-badge">C</span>100 人のうち、いちばん多く出した値段</div>
-<div class="quiz-opt" data-wrong="試した客に出す値段は、さいころで半々に決まります。学習後の選択は、100 人の後に帳簿の平均で選ぶ値段です。" onclick="checkQuiz(this,false,'exp-s3-2','s3')"><span class="opt-badge">D</span>試した客に出した値段</div>
+<div class="quiz-opt" data-wrong="「罰を受けたら合わせる」は反応のルールです。それを止めたので、A は罰を受けても 0 のままです。" onclick="checkQuiz(this,false,'exp-s3-2','s3')"><span class="opt-badge">A</span>罰なしより上（罰を受けた A が出し始める）</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-2','s3')"><span class="opt-badge">B</span>罰なしと同じ（A は 0 のままで、罰は続く）</div>
+<div class="quiz-opt" data-wrong="このモデルの人は、罰をおそれて動きを変えたりしません。書いていない動きは起きないので、拠出は罰なしと同じです。" onclick="checkQuiz(this,false,'exp-s3-2','s3')"><span class="opt-badge">C</span>罰なしより下（罰をおそれて、皆が出さなくなる）</div>
+<div class="quiz-opt" data-wrong="拠出が増えたのは、反応のルールがあったときだけです。反応を止めると、罰があっても増えません。" onclick="checkQuiz(this,false,'exp-s3-2','s3')"><span class="opt-badge">D</span>罰・反応ありと同じ（罰があれば、拠出は増える）</div>
 </div>
-<div class="quiz-exp" id="exp-s3-2"><strong>正解: A</strong><br/>営業中の売上は学びながら得た 100 人ぶんの売上、学習後の選択は 100 人の後に平均が高いほうの値段です。よい値段は 400 円（ならすと 1 人あたり 400 × 0.8 ＝ 320 円、800 × 0.3 ＝ 240 円）です。2 つは別の物差しなので、混ぜて「どちらがよい」と言いません。</div>
+<div class="quiz-exp" id="exp-s3-2"><strong>正解: B</strong><br/>1 ラウンド目は 3 つの社会とも 0・12・12・20。反応なしの 2 ラウンド目からは、班平均以上の D だけが A に 1 件ずつ罰を与えます。拠出は罰なしと同じで、罰は続き、受け取りは罰なしより下になります（動画の入口の三択では ②）。</div>
 </div>
 
 <div class="quiz-card" id="qc-s3-3">
-<div class="quiz-q"><span class="quiz-qnum">Q3</span>200 本の店で 2 人の店長を比べると、どうなりましたか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q3</span>罰を加えた社会は、拠出が 4.89 → 11.86 に増えました。反応だけ止めた社会と比べて、動画が出した結論はどれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="seed 15 の 1 本だけを見ると、そう読みたくなります。200 本では、売上が多い本は平均だけで選ぶ店長のほうが 144 本と多くなりました。" onclick="checkQuiz(this,false,'exp-s3-3','s3')"><span class="opt-badge">A</span>最後に選んだ値段でも売上でも、たまに試す店長が 200 本とも上だった</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-3','s3')"><span class="opt-badge">B</span>最後に 400 円を選んだのはたまに試す店長が多い（178 本 → 193 本）が、売上が多い本は平均だけで選ぶ店長が 144 本（試すは 36 本・同点 20 本）</div>
-<div class="quiz-opt" data-wrong="逆です。売上が多い本は、平均だけで選ぶ店長が 144 本、たまに試す店長が 36 本、同点が 20 本でした。" onclick="checkQuiz(this,false,'exp-s3-3','s3')"><span class="opt-badge">C</span>売上が多い本は、たまに試す店長が 144 本、平均だけで選ぶ店長が 36 本だった</div>
-<div class="quiz-opt" data-wrong="最後に 400 円を選んだのは 178 本と 193 本で、たまに試す店長が多くなりました。売上が多い本は 144 本と 36 本で、半々ではありません。" onclick="checkQuiz(this,false,'exp-s3-3','s3')"><span class="opt-badge">D</span>最後に 400 円を選んだ本の数も、売上が多い本の数も、2 人でだいたい半々だった</div>
+<div class="quiz-opt" data-wrong="反応なしの社会は罰が 278 件と、反応ありの 169 件より多いのに、拠出は罰なしと同じ 4.89 でした。" onclick="checkQuiz(this,false,'exp-s3-3','s3')"><span class="opt-badge">A</span>罰の件数が多い社会ほど、協力はそのぶん大きく増える</div>
+<div class="quiz-opt" data-wrong="これが、よくある失敗です。罰のルールは残して反応だけ止めると、拠出は罰なしと同じ 4.89 で、増えた分がまるごと消えます。" onclick="checkQuiz(this,false,'exp-s3-3','s3')"><span class="opt-badge">B</span>罰のルールを加えさえすれば、それだけで協力は増える</div>
+<div class="quiz-opt" data-wrong="このモデルの人は損得を計算しません。合わせるのは、作る人がそう書いたからです。反応ありの数は、人がこう反応するという証拠ではありません。" onclick="checkQuiz(this,false,'exp-s3-3','s3')"><span class="opt-badge">C</span>罰を受けた人は、損得を計算して多く出すようになる</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-3','s3')"><span class="opt-badge">D</span>協力を増やしたのは、罰を受けたら合わせると書いた仮定</div>
 </div>
-<div class="quiz-exp" id="exp-s3-3"><strong>正解: B</strong><br/>たまに試す店長は、最後に 400 円を選ぶ本が 178 本から 193 本に増えました。でも売上が多い本は、平均だけで選ぶ店長が 144 本で、売上の平均も 30886 円対 30366 円でした。物差しを替えると、勝つ店長が入れ替わります。</div>
+<div class="quiz-exp" id="exp-s3-3"><strong>正解: D</strong><br/>罰を加えた社会だけを見ると「罰のルールが効いた」と読みたくなります。でも、罰は残して反応だけ止めると、増えた 6.97 がまるごと消えます。このモデルでは、罰の効き目は書いた反応から来ます。罰の件数が減っていくのも、反応の仮定からです。</div>
 </div>
 
 <div class="quiz-card" id="qc-s3-4">
-<div class="quiz-q"><span class="quiz-qnum">Q4</span>動画が「試しの費用」と「試しの得」を、出だしで分けて数えた結果として正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q4</span>100 人の社会で、罰は残して反応だけ止めた社会（10 ラウンドの平均）は、罰なしと比べてどうでしたか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="逆です。ふつうの出だしの店では少し損、出だしが悪い店（400 円を 1 回しか出せなかった店）で大きく得をします。" onclick="checkQuiz(this,false,'exp-s3-4','s3')"><span class="opt-badge">A</span>ふつうの出だしの店で大きく得をして、出だしが悪い店で少し損をする</div>
-<div class="quiz-opt" data-wrong="ふつうの出だしの店では、800 円を多く出すぶん損をします。大きく得をするのは出だしが悪い 15 本だけで、合わせると 1 本あたり約 520 円の損です。" onclick="checkQuiz(this,false,'exp-s3-4','s3')"><span class="opt-badge">B</span>どの店でも試すと得をして、200 本でならすと 1 本あたり約 520 円の得</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-4','s3')"><span class="opt-badge">C</span>ふつうの出だしの 185 本では毎回少し損（約 945 円）、出だしが悪い 15 本では大きく得（4720 円）をして、200 本でならすと 1 本あたり約 520 円の損</div>
-<div class="quiz-opt" data-wrong="試した客の約半分には、ならすと売れにくい 800 円を出します。800 円を 1 回出すたびに、ならすと 1 人あたり 320 − 240 ＝ 80 円少なくなります。これが試しの費用です。" onclick="checkQuiz(this,false,'exp-s3-4','s3')"><span class="opt-badge">D</span>試しには費用がないので、売上の差は運だけで決まる</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s3-4','s3')"><span class="opt-badge">A</span>拠出は同じ 4.89 で、純利得は 21.82 と罰なしより下</div>
+<div class="quiz-opt" data-wrong="それは、罰と反応の両方がある社会の数です。反応を止めると、拠出は罰なしと同じ 4.89 に戻ります。" onclick="checkQuiz(this,false,'exp-s3-4','s3')"><span class="opt-badge">B</span>拠出は 11.86 で、純利得も 26.44 と罰なしより上</div>
+<div class="quiz-opt" data-wrong="拠出は同じですが、罰は続くので、制度費用 1.11 がかかります。その分だけ、純利得は罰なしより下の 21.82 です。" onclick="checkQuiz(this,false,'exp-s3-4','s3')"><span class="opt-badge">C</span>拠出は同じ 4.89 で、純利得も同じ 22.94</div>
+<div class="quiz-opt" data-wrong="拠出は下がりません。反応なしの線は、罰なしの線と 10 ラウンドとも重なります。" onclick="checkQuiz(this,false,'exp-s3-4','s3')"><span class="opt-badge">D</span>拠出は 4.89 より下がり、純利得も罰なしより下</div>
 </div>
-<div class="quiz-exp" id="exp-s3-4"><strong>正解: C</strong><br/>ふつうの出だしの店では、800 円を約 11 回多く出すので、ならすと 11 × 80 ＝ 約 880 円の損（実際に数えると 945 円）です。出だしが悪い 15 本では、800 円を約 62 回少なく出すので、約 5000 円の得（実測 4720 円）です。合わせると 1 本あたり約 520 円の損で、少しの損を毎回払い、まれな大損を防ぎます。</div>
+<div class="quiz-exp" id="exp-s3-4"><strong>正解: A</strong><br/>seed を同じにして、同じ 100 人・同じ組み方で 3 つの社会を回しました。反応なしは拠出が罰なしと同じ 4.89 で、罰 278 件の制度費用 1.11 だけかかり、純利得は 21.82 です。協力の数と皆の受け取りの数を、別々に比べます。</div>
 </div>
 
 <div class="step-locked-gate" id="gate-s3">🔒 4問すべて正解すると トピック4 が解放されます。</div>
 </div>
 </div>
 
-<!-- ═══ トピック 4: 状態 ═══ -->
+<!-- ═══ トピック 4: 感度分析と外的妥当性 ═══ -->
 <div class="unit-panel" id="panel-s4">
 <div class="unit-header">
-<div class="uh-kicker">トピック4 — 状態</div>
-<h2>在庫が同じでも、残りの客数が違えば別の場面</h2>
-<p class="uh-desc">1 点ものの手作りの品が残り少ない店では、売れた 1 個は次の客には売れません。受付の締め切りまでのあと何人と在庫を組にした「状態」で、店の場面を書き留めます。</p>
-<div class="uh-tags"><span class="tag tag-stat">状態</span><span class="tag tag-stat">2 重の for</span></div>
+<div class="uh-kicker">トピック4 — 感度分析と外的妥当性</div>
+<h2>書いていない反応は、計算しても出てこない</h2>
+<p class="uh-desc">注意するのは手間で気まずいもの。罰を与える手間（費用）だけを大きくしたら、何が変わり、何が変わらないのか。結果を「この仮定なら」を付けて持ち出す手順を見ます。</p>
+<div class="uh-tags"><span class="tag tag-stat">感度分析</span><span class="tag tag-stat">外的妥当性</span></div>
 </div>
 <div class="obj-box">
 <div class="obj-title">// このトピックのゴール</div>
-<ul><li>状態を（あと何人, 在庫）の組で書ける</li><li>売れたとき・売れなかったときに、次にどの状態へ進むかを書ける</li><li>2 重の for で、あと 1〜6 人 × 在庫 1〜2 の 12 の状態を書き出せる</li></ul>
+<ul><li>費用だけを変えても拠出が変わらない理由を、書いたルールから説明できる</li><li>外的妥当性（結果を別の場所・人・時に持ち出してよい範囲）を説明できる</li><li>結果を「この仮定なら」の 1 文・固定した行動ルール・次の観測の 3 つで書ける</li></ul>
 </div>
 <div class="section">
 <div class="sec-label"><span class="s-num">🎬</span>解説動画</div>
-<a class="colab-card" data-topic="s4" href="https://youtu.be/5ErLFg0m9nY" target="_blank">
+<a class="colab-card" data-topic="s4" href="https://youtu.be/Fj-JJVGhe24" target="_blank">
 <span class="colab-icon">▶️</span>
-<div><div class="colab-title">トピック4 状態</div>
-<div class="colab-desc">在庫 1 個で、あと 1 人の店と、あと 30 人の店は、同じ場面か</div></div>
+<div><div class="colab-title">トピック4 感度分析と外的妥当性</div>
+<div class="colab-desc">罰の手間を 1 点から 25 点に上げると、拠出はどうなるか</div></div>
 <span class="colab-arrow">→ 視聴</span>
 </a>
 </div>
 <div class="todo-box" id="todo-s4">
-<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_learn.ipynb）</div>
+<div class="todo-title">📝 このトピックでノートブック（.ipynb）に書くこと（lecture06_public.ipynb）</div>
 <ul>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-1"><span class="todo-tag">写経</span><span class="todo-text">12 の状態を書き出す写経（6 行・スライド p.63。実行の手順は p.64）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-2"><span class="todo-tag">演習 4</span><span class="todo-text">コードは書かず、売れたとき・売れなかったときの状態を答え欄に 1 つずつ書く（スライド p.65）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-3"><span class="todo-tag">封印</span><span class="todo-text">三択の予想と理由 1 行を、封印の欄に書く（スライド p.67）</span></label></li>
-<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-4"><span class="todo-tag">最後のチェック</span><span class="todo-text">ノートの一番下のチェックのセルを実行して、全部 [ok] を確かめる（スライド p.68 まで来たら）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-1"><span class="todo-tag">写経</span><span class="todo-text">費用を 4 通りに替える写経（5 行・スライド p.71。実行の手順は p.72）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-2"><span class="todo-tag">演習 4</span><span class="todo-text">足したセルに演習の枠の 3 行を写し、1 行目を cost=22 に書き換えて実行して、答え欄に「この仮定なら」の 1 文・固定した行動ルール・次の観測を書く（スライド p.73）</span></label></li>
+<li><label class="todo-item"><input type="checkbox" class="todo-check" data-todo="todo-s4-3"><span class="todo-tag">最後のチェック</span><span class="todo-text">ノートの一番下のチェックのセルを実行して、全部 [ok] を確かめる（スライド p.75 まで来たら）</span></label></li>
 </ul>
 <div class="todo-note">チェックはこのブラウザにだけ残ります（提出はノートブックで）。</div>
 </div>
@@ -1717,47 +1715,47 @@ body {
 <div class="sec-label"><span class="s-num">①</span>確認クイズ（全4問正解でレスポン番号を表示）</div>
 
 <div class="quiz-card" id="qc-s4-1">
-<div class="quiz-q"><span class="quiz-qnum">Q1</span>動画で「状態」と呼んだのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q1</span>罰 1 件で与えた人が失う点（費用）を、1 点から 25 点に上げました（受けた人の −3 はそのまま）。4 人の班の 2・3 ラウンド目の拠出は、どうなりましたか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="値段は、状態を見てから店長が選ぶものです。状態は、受付の締め切りまでのあと何人と在庫の組で、あと何人を先に書きます。" onclick="checkQuiz(this,false,'exp-s4-1','s4')"><span class="opt-badge">A</span>（在庫, 値段）の組</div>
-<div class="quiz-opt" data-wrong="在庫だけでは、締め切り直前の店と受付開始直後の店が区別できません。状態は、あと何人と在庫の組です。" onclick="checkQuiz(this,false,'exp-s4-1','s4')"><span class="opt-badge">B</span>在庫の数だけ</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-1','s4')"><span class="opt-badge">C</span>（あと何人, 在庫）の組。(1, 2) ならあと 1 人・在庫 2 個</div>
-<div class="quiz-opt" data-wrong="それは行動価値（トピック1）です。状態は、値段を決める前に、いまの店の様子を（あと何人, 在庫）の 2 つの数で書き留めたものです。" onclick="checkQuiz(this,false,'exp-s4-1','s4')"><span class="opt-badge">D</span>その値段の 1 回あたりの平均</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-1','s4')"><span class="opt-badge">A</span>変わらない（費用 1 のときと同じ数になる）</div>
+<div class="quiz-opt" data-wrong="罰を与える人は「平均以上を出した人」と書いてあり、費用によって減るとは書いていません。だから罰の件数も拠出も変わりません。" onclick="checkQuiz(this,false,'exp-s4-1','s4')"><span class="opt-badge">B</span>下がる（手間が大きいので、罰を与える人が減る）</div>
+<div class="quiz-opt" data-wrong="上げたのは与えた人の手間で、受けた人の −3 はそのままです。拠出は費用 1 のときと同じでした。" onclick="checkQuiz(this,false,'exp-s4-1','s4')"><span class="opt-badge">C</span>上がる（罰が重くなったので、皆が多く出す）</div>
+<div class="quiz-opt" data-wrong="受け取りは 0 より下にもなりますが、次のラウンドはまた持ち点 20 から始まります。拠出は費用 1 のときと同じでした。" onclick="checkQuiz(this,false,'exp-s4-1','s4')"><span class="opt-badge">D</span>0 になる（受け取りが 0 より下になるので）</div>
 </div>
-<div class="quiz-exp" id="exp-s4-1"><strong>正解: C</strong><br/>状態は（あと何人, 在庫）の組で、あと何人を先、在庫を後に書きます。あと何人は、受付の締め切りまでにあと何人がページを開くかです。在庫が同じでも、あと何人が違えば別の状態です。</div>
+<div class="quiz-exp" id="exp-s4-1"><strong>正解: A</strong><br/>2 ラウンド目は 14.67・10.67・10.67・20、3 ラウンド目は 13.78・15.11・15.11・20 で、費用 1 と 25 でまったく同じです（動画の入口の三択では ②）。変わるのは受け取りで、1 ラウンド目は 3 件 ×（25 ＋ 3）＝ 84 点が消え、班の平均は 5.6 でした。</div>
 </div>
 
 <div class="quiz-card" id="qc-s4-2">
-<div class="quiz-q"><span class="quiz-qnum">Q2</span>状態 (2, 1)（あと 2 人・在庫 1 個）の店に、1 人目がページを開きました。次の状態として正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q2</span>費用を 25 にしても拠出が変わらなかった理由として、動画が言ったのはどれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="逆です。買えば在庫が 0 になるので (1, 0) で受付終了、買わなければ品が残るので (1, 1) です。" onclick="checkQuiz(this,false,'exp-s4-2','s4')"><span class="opt-badge">A</span>買えば (1, 1)、買わなければ (1, 0) で受付終了</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-2','s4')"><span class="opt-badge">B</span>買えば (1, 0) で受付終了、買わなければ (1, 1)</div>
-<div class="quiz-opt" data-wrong="売れなくても、ページを開いた 1 人のぶん、あと何人は 1 つ減ります。買わなければ (1, 1) です。" onclick="checkQuiz(this,false,'exp-s4-2','s4')"><span class="opt-badge">C</span>買えば (1, 0) で受付終了、買わなければ何も変わらない</div>
-<div class="quiz-opt" data-wrong="1 人目が買っても、あと何人は 1 つ減るだけで 1 人残ります。在庫が 0 なので (1, 0) で、もう売る品が無いので受付終了です。" onclick="checkQuiz(this,false,'exp-s4-2','s4')"><span class="opt-badge">D</span>買えば (0, 0) で受付終了、買わなければ (1, 1)</div>
+<div class="quiz-opt" data-wrong="ラウンドの数のせいではありません。費用はどのルールにも出てこないので、何ラウンド回しても、拠出は費用 1 のときと同じです。" onclick="checkQuiz(this,false,'exp-s4-2','s4')"><span class="opt-badge">A</span>4 人の班は、3 ラウンドしか回していないから</div>
+<div class="quiz-opt" data-wrong="気にしないのは、作る人が書いたルールです。現実の人がどうかは、このモデルでは分かりません。調べたいなら「手間が大きいと注意しない」を書き足します。" onclick="checkQuiz(this,false,'exp-s4-2','s4')"><span class="opt-badge">B</span>人は、罰を与える手間を気にしないものだから</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-2','s4')"><span class="opt-badge">C</span>罰のルールにも反応のルールにも、費用が書いていないから</div>
+<div class="quiz-opt" data-wrong="費用 25 の班は 1 ラウンド目に 84 点が消え、平均は 5.6 でした。純利得の高さで拠出が決まるルールもありません。" onclick="checkQuiz(this,false,'exp-s4-2','s4')"><span class="opt-badge">D</span>費用 25 でも、純利得が罰なしより上だったから</div>
 </div>
-<div class="quiz-exp" id="exp-s4-2"><strong>正解: B</strong><br/>売れたら在庫が 1 つ減り、あと何人も 1 つ減ります。売れなくても、あと何人は 1 つ減ります。在庫 0 か、あと 0 人になったら受付終了です。だから (2, 1) からは、買えば (1, 0)、買わなければ (1, 1) に分かれます。</div>
+<div class="quiz-exp" id="exp-s4-2"><strong>正解: C</strong><br/>罰のルール（平均以上の人が、平均より 4 を超えて低い人へ 1 件ずつ）にも、反応のルール（受けた人は次から合わせる・見た条件付き協力型も × 1）にも、費用は出てきません。罰を与える側の「手間が大きいと罰をやめる」は、どこにも書いていません。書いていない反応は、計算しても出てきません。</div>
 </div>
 
 <div class="quiz-card" id="qc-s4-3">
-<div class="quiz-q"><span class="quiz-qnum">Q3</span>あと何人を 1〜6 人、在庫を 1〜2 個として、2 重の for で状態を書き出す写経をしました。正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q3</span>動画で「外的妥当性」と呼んだのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-3','s4')"><span class="opt-badge">A</span>12 個の状態が、(1, 1)・(1, 2) … (6, 2) の順に出る（外の for が 1 回まわる間に、中の for が 2 回まわる）</div>
-<div class="quiz-opt" data-wrong="足し算ではありません。あと何人の 6 通りのそれぞれに、在庫の 2 通りがあるので、6 × 2 ＝ 12 個です。" onclick="checkQuiz(this,false,'exp-s4-3','s4')"><span class="opt-badge">B</span>8 個の状態が出る（6 ＋ 2）</div>
-<div class="quiz-opt" data-wrong="外の for があと何人、中の for が在庫なので、あと 1 人の在庫 1・在庫 2 を出してから、あと 2 人へ進みます。(1, 1)・(1, 2) の順です。" onclick="checkQuiz(this,false,'exp-s4-3','s4')"><span class="opt-badge">C</span>12 個の状態が、(1, 1)・(2, 1) … (6, 1) と在庫 1 を先に全部出してから、在庫 2 の順に出る</div>
-<div class="quiz-opt" data-wrong="在庫 0 か、あと 0 人の状態は受付終了なので、書き出していません。range(1, 7) で 1〜6 人、[1, 2] で在庫 1〜2 なので 12 個です。" onclick="checkQuiz(this,false,'exp-s4-3','s4')"><span class="opt-badge">D</span>在庫 0 の状態も入れて、18 個の状態が出る</div>
+<div class="quiz-opt" data-wrong="コードが動くことは、持ち出してよい範囲とは別の話です。動いても、書いたルールの外のことは答えられません。" onclick="checkQuiz(this,false,'exp-s4-3','s4')"><span class="opt-badge">A</span>モデルのプログラムが、エラーを出さずに最後まで動くこと</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-3','s4')"><span class="opt-badge">B</span>結果を、別の場所・別の人・別の時に持ち出してよい範囲</div>
+<div class="quiz-opt" data-wrong="同じ結果が出るのは再現できることで、別の場所・別の人に当てはまるかとは別の話です。" onclick="checkQuiz(this,false,'exp-s4-3','s4')"><span class="opt-badge">C</span>同じ seed で回すと、何度でも同じ結果が出ること</div>
+<div class="quiz-opt" data-wrong="数が一致することを言う語ではありません。モデルや実験の結果を、外へ持ち出してよい範囲のことです。" onclick="checkQuiz(this,false,'exp-s4-3','s4')"><span class="opt-badge">D</span>モデルの数が、教室の実験の数とぴったり一致すること</div>
 </div>
-<div class="quiz-exp" id="exp-s4-3"><strong>正解: A</strong><br/>外の for（rest）があと何人を 1〜6 人、中の for（stock）が在庫 1・2 をまわします。外が 1 回まわる間に中が 2 回まわるので、(1, 1)・(1, 2) の順に、6 × 2 ＝ 12 個の状態が出ます。</div>
+<div class="quiz-exp" id="exp-s4-3"><strong>正解: B</strong><br/>外的妥当性は、モデルや実験の結果を、別の場所・別の人・別の時に持ち出してよい範囲です。確かめたのは「この仮定なら、罰なしと罰ありで拠出と純利得に差が出る」まで。現実の人が罰や手間にどう反応するかは、確かめていません。モデルの答えは、書いたルールの中だけです。</div>
 </div>
 
 <div class="quiz-card" id="qc-s4-4">
-<div class="quiz-q"><span class="quiz-qnum">Q4</span>1 点ものの品を扱う店で、帳簿に在庫だけを書くと何が起きるか、また動画のまとめとして正しいのは、どれですか。</div>
+<div class="quiz-q"><span class="quiz-qnum">Q4</span>100 人の社会で、同じ seed・同じルールのまま、費用だけを 1・5・20・25 と変えました。結果として正しいのは、どれですか。</div>
 <div class="quiz-opts">
-<div class="quiz-opt" data-wrong="1 点ものの品では、売れた 1 個は次の客には売れません。だから、在庫に加えて、締め切りまであと何人残っているかも組で書きます。" onclick="checkQuiz(this,false,'exp-s4-4','s4')"><span class="opt-badge">A</span>在庫に限りがあっても、ここまでの店と同じで、あと何人は見なくてよい</div>
-<div class="quiz-opt" data-wrong="在庫だけを書くと、在庫 1 の行は 1 つしかありません。あと 1 人の (1, 1) も、あと 3 人の (3, 1) も、同じ行に入ってしまいます。" onclick="checkQuiz(this,false,'exp-s4-4','s4')"><span class="opt-badge">B</span>在庫だけを書いても、(1, 1) と (3, 1) は別の行になるので困らない</div>
-<div class="quiz-opt" data-wrong="在庫も要ります。売れた 1 個は次の客には売れないので、品があと何個あるかで場面が変わります。状態は、あと何人と在庫の組です。" onclick="checkQuiz(this,false,'exp-s4-4','s4')"><span class="opt-badge">C</span>あと何人だけを書けば十分で、在庫は書かなくてよい</div>
-<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-4','s4')"><span class="opt-badge">D</span>締め切り直前の (1, 1) と受付開始直後の (3, 1) が同じ行に混ざる。在庫に限りがあると、平均に加えて、あと何人残っているかも見る</div>
+<div class="quiz-opt" data-wrong="拠出は変わりませんが、罰 1 件で消える点が増えるので、純利得は費用が大きいほど下がります。" onclick="checkQuiz(this,false,'exp-s4-4','s4')"><span class="opt-badge">A</span>拠出も純利得も、費用によらずまったく変わらない</div>
+<div class="quiz-opt" data-wrong="拠出は費用によらず 11.86 のままです。拠出を決めるルールに、費用が書いていないからです。" onclick="checkQuiz(this,false,'exp-s4-4','s4')"><span class="opt-badge">B</span>拠出も純利得も、費用が上がるほど一緒に下がっていく</div>
+<div class="quiz-opt" data-wrong="逆です。費用は消える点として純利得から引かれるので、純利得のほうが下がります。拠出は 11.86 のままです。" onclick="checkQuiz(this,false,'exp-s4-4','s4')"><span class="opt-badge">C</span>純利得は変わらずに、拠出だけが費用とともに下がっていく</div>
+<div class="quiz-opt" onclick="checkQuiz(this,true,'exp-s4-4','s4')"><span class="opt-badge">D</span>拠出は 11.86 のままで、純利得だけが下がっていく</div>
 </div>
-<div class="quiz-exp" id="exp-s4-4"><strong>正解: D</strong><br/>あと何人の欄を落とすと、締め切り直前の店と受付開始直後の店が、帳簿の同じ 1 行に混ざります。状態（あと何人, 在庫）の組で書けば別の行になります。在庫に限りがあると、平均に加えて、あと何人残っているかも見ます。</div>
+<div class="quiz-exp" id="exp-s4-4"><strong>正解: D</strong><br/>拠出は 11.86 のまま、純利得は費用が大きいほど下がり、大きな費用では罰なしの 22.94 を下回ります。seed を 20 通り変えると、費用 25 で罰なしより下は 20 本中 9 本で、seed 1 つだけでは言い切れません。結果は「この仮定なら」を付けて 1 文にし、固定した行動ルールと、現実で確かめる次の観測を書きます。</div>
 </div>
 
 <div class="step-locked-gate" id="gate-s4">🔒 4問すべて正解すると<strong>レスポン番号</strong>が表示されます。</div>
@@ -1831,8 +1829,8 @@ const TEACHER_MODE = (function(){
 // ════════════════════════════════════════
 // VERSION / STORAGE KEYS
 // ════════════════════════════════════════
-const VER = "V_KEI-TOKU2_L06_01";
-const CLOSING = "第06回お疲れ様でした";
+const VER = "V_KEI-TOKU2_L06_02";
+const CLOSING = "第6回お疲れ様でした";
 // 教員の表示テストで学生の進捗・出席状態を壊さないよう、教員モードだけ保存領域を分ける。
 const NS = TEACHER_MODE ? 'teacher_' : '';
 const THEME_KEY = 'theme_' + VER;
@@ -3135,7 +3133,7 @@ function restoreAnsweredState() {
 // 学期途中で既存学生の進捗が消える。画面に出る文言だけ「トピック」に統一した（F10）。
 
 </script>
-<!-- build-stamp format:1 | builder:build_quiz.py/2026-09-08 | base:7c5b49581105 | content:5f4f4f9b9712 | body:e65554b63cb6 | built:2026-10-13T16:21:13+09:00
+<!-- build-stamp format:1 | builder:build_quiz.py/2026-09-08 | base:7c5b49581105 | content:85a84d776d6f | body:180e729f8306 | built:2026-10-31T16:02:44+09:00
      この HTML は生成物です。手で直さないでください（次のビルドで消えます）。
      直すのは lectureNN/_work/quiz_content.py で、`python scripts/build_quiz.py NN` で作り直します。 -->
 </body>
